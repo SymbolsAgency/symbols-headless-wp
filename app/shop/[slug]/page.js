@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getAllProducts, getProductBySlug, formatPrice } from '@/lib/woocommerce';
+import BuyButton from './components/BuyButton';
 
 // Generate static paths για όλα τα products
 export async function generateStaticParams() {
@@ -57,10 +58,7 @@ export default async function ProductPage({ params }) {
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        gap: '3rem',
-        '@media (max-width: 768px)': {
-          gridTemplateColumns: '1fr'
-        }
+        gap: '3rem'
       }}>
         {/* Product Images */}
         <div>
@@ -154,26 +152,7 @@ export default async function ProductPage({ params }) {
           </div>
 
           {/* Buy Button */}
-          <a
-            href={product.permalink}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'block',
-              padding: '1rem 2rem',
-              background: '#0070f3',
-              color: 'white',
-              textAlign: 'center',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              fontSize: '1.1rem',
-              fontWeight: 'bold',
-              marginBottom: '1rem',
-              transition: 'background 0.2s'
-            }}
-          >
-            Buy on symbols.gr →
-          </a>
+          <BuyButton url={product.permalink} />
 
           {/* Categories & Tags */}
           {product.categories && product.categories.length > 0 && (
