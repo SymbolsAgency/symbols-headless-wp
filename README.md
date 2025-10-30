@@ -88,3 +88,4 @@ npm run build
 ## Automation (Optional)
 
 Για auto-deploy με κάθε νέο WordPress post, χρησιμοποίησε Vercel + Webhooks.
+# Last updated: Thu, Oct 30, 2025  4:10:34 PM
