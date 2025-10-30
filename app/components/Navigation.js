@@ -27,6 +27,18 @@ export default function Navigation({ pages, categories }) {
           Αρχική
         </Link>
 
+        <Link
+          href="/shop"
+          style={{
+            fontWeight: 'bold',
+            color: '#0070f3',
+            textDecoration: 'none',
+            fontSize: '1.2rem'
+          }}
+        >
+          🛒 Shop
+        </Link>
+
         {pages && pages.length > 0 && (
           <>
             {pages.slice(0, 5).map(page => (
