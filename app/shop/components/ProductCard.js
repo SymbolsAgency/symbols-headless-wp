@@ -20,7 +20,7 @@ export default function ProductCard({ product, image, formattedPrice }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {image && (
+      {image ? (
         <Link href={`/shop/${product.slug}`}>
           <img
             src={image}
@@ -32,6 +32,23 @@ export default function ProductCard({ product, image, formattedPrice }) {
               cursor: 'pointer'
             }}
           />
+        </Link>
+      ) : (
+        <Link href={`/shop/${product.slug}`}>
+          <div style={{
+            width: '100%',
+            height: '280px',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontSize: '3rem',
+            fontWeight: 'bold',
+            cursor: 'pointer'
+          }}>
+            {product.name.charAt(0).toUpperCase()}
+          </div>
         </Link>
       )}
 
