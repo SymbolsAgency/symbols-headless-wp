@@ -1,43 +1,24 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
 
 export default function ProductCard({ product, image, formattedPrice }) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <article
-      style={{
-        border: '1px solid #e0e0e0',
-        borderRadius: '8px',
-        overflow: 'hidden',
-        transition: 'transform 0.2s, box-shadow 0.2s',
-        background: 'white',
-        transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
-        boxShadow: isHovered ? '0 8px 16px rgba(0,0,0,0.1)' : 'none'
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <article className="card">
       {image ? (
         <Link href={`/shop/${product.slug}`}>
           <img
             src={image}
             alt={product.name}
-            style={{
-              width: '100%',
-              height: '280px',
-              objectFit: 'cover',
-              cursor: 'pointer'
-            }}
+            className="card-image"
+            style={{ cursor: 'pointer' }}
           />
         </Link>
       ) : (
         <Link href={`/shop/${product.slug}`}>
           <div style={{
             width: '100%',
-            height: '280px',
+            height: '220px',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
             display: 'flex',
             alignItems: 'center',
@@ -52,29 +33,17 @@ export default function ProductCard({ product, image, formattedPrice }) {
         </Link>
       )}
 
-      <div style={{ padding: '1.5rem' }}>
-        <h2 style={{
-          fontSize: '1.25rem',
-          marginBottom: '0.5rem',
-          minHeight: '3rem'
-        }}>
-          <Link
-            href={`/shop/${product.slug}`}
-            style={{
-              color: '#333',
-              textDecoration: 'none'
-            }}
-          >
+      <div className="card-content">
+        <h2 className="card-title" style={{ minHeight: '3rem' }}>
+          <Link href={`/shop/${product.slug}`}>
             {product.name}
           </Link>
         </h2>
 
         {product.short_description && (
           <div
+            className="card-excerpt"
             style={{
-              color: '#666',
-              fontSize: '0.9rem',
-              marginBottom: '1rem',
               minHeight: '3rem',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -90,12 +59,13 @@ export default function ProductCard({ product, image, formattedPrice }) {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          marginTop: '1rem'
+          marginTop: '1rem',
+          marginBottom: '1rem'
         }}>
           <span style={{
             fontSize: '1.5rem',
             fontWeight: 'bold',
-            color: '#0070f3'
+            color: 'var(--primary-color)'
           }}>
             {formattedPrice}
           </span>
@@ -104,49 +74,33 @@ export default function ProductCard({ product, image, formattedPrice }) {
             <span style={{
               color: '#10b981',
               fontSize: '0.9rem',
-              fontWeight: '500'
+              fontWeight: '600'
             }}>
-              In Stock
+              ✓ In Stock
             </span>
           ) : (
             <span style={{
               color: '#ef4444',
               fontSize: '0.9rem',
-              fontWeight: '500'
+              fontWeight: '600'
             }}>
-              Out of Stock
+              ✗ Out of Stock
             </span>
           )}
         </div>
 
-        <ViewDetailsButton href={`/shop/${product.slug}`} />
+        <Link href={`/shop/${product.slug}`} className="card-link" style={{
+          display: 'block',
+          textAlign: 'center',
+          padding: '0.75rem',
+          background: 'var(--gradient-primary)',
+          color: 'white',
+          borderRadius: '8px',
+          fontWeight: '600'
+        }}>
+          View Details →
+        </Link>
       </div>
     </article>
-  );
-}
-
-function ViewDetailsButton({ href }) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <Link
-      href={href}
-      style={{
-        display: 'block',
-        marginTop: '1rem',
-        padding: '0.75rem',
-        background: isHovered ? '#0051cc' : '#0070f3',
-        color: 'white',
-        textAlign: 'center',
-        borderRadius: '6px',
-        textDecoration: 'none',
-        fontWeight: '500',
-        transition: 'background 0.2s'
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      View Details
-    </Link>
   );
 }
