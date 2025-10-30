@@ -7,6 +7,9 @@
 
 :root {
   --primary-color: #0066cc;
+  --navy-blue: #001f3f;
+  --cyan-blue: #00d4ff;
+  --promo-green: #00bfa5;
   --secondary-color: #00a8e8;
   --text-dark: #1a1a1a;
   --text-medium: #4a4a4a;
@@ -34,37 +37,71 @@ body {
   line-height: 1.6;
 }
 
-/* Header Styles */
-header {
-  background: var(--gradient-primary);
+/* Promo Banner */
+.promo-banner {
+  background: var(--promo-green);
+  color: white;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* Main Header with Logo */
+.main-header {
+  background: var(--navy-blue);
   color: white;
   padding: 2rem 2rem 1.5rem 2rem;
   box-shadow: var(--shadow-md);
+  text-align: center;
 }
 
-header .container {
+.header-container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+.logo {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 2px;
   margin-bottom: 0.5rem;
-  letter-spacing: -0.5px;
+  font-family: 'Arial Black', sans-serif;
 }
 
-header p {
+.logo span {
+  display: inline-block;
+}
+
+.logo-o {
+  color: var(--cyan-blue);
+  position: relative;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.logo-r {
+  font-size: 1.5rem;
+  vertical-align: super;
+}
+
+.tagline {
   font-size: 1.1rem;
   opacity: 0.95;
   font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Navigation Styles */
 nav {
   background: var(--background-white);
   padding: 0;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
   box-shadow: var(--shadow-sm);
   position: sticky;
   top: 0;
@@ -75,49 +112,97 @@ nav .nav-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  gap: 2rem;
-  padding: 1rem 2rem;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 2rem;
   align-items: center;
 }
 
-nav a {
+.nav-main {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-item {
   color: var(--text-dark);
   text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 0;
+  font-weight: 600;
+  padding: 1.25rem 0;
   transition: var(--transition);
   position: relative;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
-nav a:hover {
+.nav-item:hover {
   color: var(--primary-color);
 }
 
-nav a.nav-primary {
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--primary-color);
-}
-
-nav a::after {
+.nav-item::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 0;
-  height: 2px;
+  height: 3px;
   background: var(--primary-color);
   transition: width 0.3s ease;
 }
 
-nav a:hover::after {
+.nav-item:hover::after {
   width: 100%;
 }
 
+.nav-shop {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* Dropdown Menu */
+.nav-item-dropdown {
+  position: relative;
+}
+
+.nav-item-dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: var(--shadow-lg);
+  border-radius: 0 0 8px 8px;
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background: var(--background-light);
+  color: var(--primary-color);
+  padding-left: 2rem;
+}
+
+/* Categories - Right Side */
 .nav-categories {
-  margin-left: auto;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -127,7 +212,24 @@ nav a:hover::after {
 .nav-categories-label {
   color: var(--text-medium);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-category-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-category-link:hover {
+  background: var(--background-light);
+  transform: translateY(-2px);
 }
 
 /* Main Content */
